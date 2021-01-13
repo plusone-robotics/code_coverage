@@ -130,6 +130,7 @@ function(ADD_CODE_COVERAGE)
         # Cleanup lcov
         COMMAND ${LCOV_PATH} --directory . --zerocounters
         # Create baseline to make sure untouched files show up in the report
+        COMMAND echo "--------------------------"
         COMMAND ${LCOV_PATH} -c -i -d . -o ${Coverage_NAME}.base
         WORKING_DIRECTORY ${PROJECT_BINARY_DIR}
         DEPENDS ${Coverage_DEPENDENCIES}
@@ -142,6 +143,7 @@ function(ADD_CODE_COVERAGE)
         COMMAND ${LCOV_PATH} --directory . --capture --output-file ${Coverage_NAME}.info
         # add baseline counters
         COMMAND echo $PYTHONIOENCODING
+        COMMAND echo "-------------------------"
         COMMAND ${LCOV_PATH} -a ${Coverage_NAME}.base -a ${Coverage_NAME}.info --output-file ${PROJECT_BINARY_DIR}/${Coverage_NAME}.total
         COMMAND echo $PROJECT_BINARY_DIR
         COMMAND ${LCOV_PATH} --remove ${PROJECT_BINARY_DIR}/${Coverage_NAME}.total ${COVERAGE_EXCLUDES} --output-file ${PROJECT_BINARY_DIR}/${Coverage_NAME}.info.removed
