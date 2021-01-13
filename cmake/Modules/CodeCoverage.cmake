@@ -149,7 +149,6 @@ function(ADD_CODE_COVERAGE)
         # Cleanup lcov
         COMMAND ${LCOV_PATH} --directory . --zerocounters
         # Create baseline to make sure untouched files show up in the report
-        COMMAND echo "--------------------------"
         COMMAND ${LCOV_PATH} -c -i -d . -o ${Coverage_NAME}.base
         WORKING_DIRECTORY ${PROJECT_BINARY_DIR}
         DEPENDS ${Coverage_DEPENDENCIES}
