@@ -137,6 +137,7 @@ function(ADD_CODE_COVERAGE)
     )
 
     add_custom_target(${Coverage_NAME}
+        COMMAND export PYTHONIOENCODING=UTF-8
         # Capturing lcov counters and generating report
         COMMAND ${LCOV_PATH} --directory . --capture --output-file ${Coverage_NAME}.info
         # add baseline counters
